@@ -7,11 +7,13 @@ class GetAllProductsServices {
         await Api().get(url: "https://fakestoreapi.com/products", token: null);
 
     List<ProductModel> listproducts = [];
+
     for (int i = 0; i < data.length; i++) {
       listproducts.add(
         ProductModel.fromJson(data[i]),
       );
     }
+
     return listproducts;
   }
 }
