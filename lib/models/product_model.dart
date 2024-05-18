@@ -21,11 +21,15 @@ class ProductModel {
     return ProductModel(
       id: data['id'],
       title: data['title'],
-      price: (data['price'] as num).toDouble(),
+      price: data['price'] is String
+          ? double.parse(data['price'])
+          : (data['price'] as num).toDouble(),
       description: data['description'],
       category: data['category'],
       image: data['image'],
-      ratingModel: RatingModel.fromJson(data['rating']),
+      ratingModel: data['rating'] != null
+          ? RatingModel.fromJson(data['rating'])
+          : RatingModel(rate: 0.0, count: 0),
     );
   }
 }
